@@ -11,4 +11,4 @@
 <label for="">Number 2 :</label>
 <input type="number" [(ngModel)]="number2">
 <input type="button" value="Calculate" (click)="onCalculateClick()">
-<div>{{result}}</div>
+<calculator-result [result]="result"></calculator-result>

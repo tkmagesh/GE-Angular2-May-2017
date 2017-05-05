@@ -6,13 +6,14 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { HelloWorldComponent } from './helloWorld/helloWorld.component';
 import { CalculatorComponent} from './calculator/calculator.component';
-
+import { CalculatorResultComponent} from './calculator/calculatorResult.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HelloWorldComponent,
-    CalculatorComponent
+    CalculatorComponent,
+    CalculatorResultComponent
   ],
   imports: [
     BrowserModule,
