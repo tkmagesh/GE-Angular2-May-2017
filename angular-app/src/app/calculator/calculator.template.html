@@ -1,7 +1,7 @@
 <h1>Calculator</h1>
 <hr>
 <label for="">Number 1 :</label>
-<input type="number" [(ngModel)]="number1" >
+<input type="number" [(ngModel)]="calc.number1" >
 <select [(ngModel)]="operation">
 	<option value="add">add</option>
 	<option value="subtract">subtract</option>
@@ -9,6 +9,6 @@
 	<option value="divide">divide</option>
 </select>
 <label for="">Number 2 :</label>
-<input type="number" [(ngModel)]="number2">
-<input type="button" value="Calculate" (click)="onCalculateClick()">
-<calculator-result [result]="result"></calculator-result>
+<input type="number" [(ngModel)]="calc.number2">
+<input type="button" value="Calculate" (click)="calc[operation]()">
+<calculator-result [result]="calc.result"></calculator-result>
