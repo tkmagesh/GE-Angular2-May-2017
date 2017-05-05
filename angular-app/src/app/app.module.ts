@@ -5,12 +5,14 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { HelloWorldComponent } from './helloWorld/helloWorld.component';
+import { CalculatorComponent} from './calculator/calculator.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HelloWorldComponent
+    HelloWorldComponent,
+    CalculatorComponent
   ],
   imports: [
     BrowserModule,
