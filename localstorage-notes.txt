@@ -1,0 +1,13 @@
+window.localStorage
+	//key value store
+		- key has to be unique (introduce an 'id' attribute in the bug)
+		- both key and value should be strings
+			(use JSON.stringify & JSON.parse for serialization and deserialization)
+
+	//APIs
+		- setItem(key, value)
+		- getItem(key) //=> value
+		- removeItem(key)
+		- key(index) //=> key at index
+		- clear()
+		- length

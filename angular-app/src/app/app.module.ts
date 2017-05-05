@@ -8,7 +8,10 @@ import { HelloWorldComponent } from './helloWorld/helloWorld.component';
 import { CalculatorComponent} from './calculator/calculator.component';
 import { CalculatorResultComponent} from './calculator/calculatorResult.component';
 
+
 import { BugTrackerComponent } from './bugTracker/bugTracker.component';
+import { BugService } from './bugTracker/services/BugService';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +25,7 @@ import { BugTrackerComponent } from './bugTracker/bugTracker.component';
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [BugService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
