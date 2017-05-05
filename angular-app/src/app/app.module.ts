@@ -8,12 +8,14 @@ import { HelloWorldComponent } from './helloWorld/helloWorld.component';
 import { CalculatorComponent} from './calculator/calculator.component';
 import { CalculatorResultComponent} from './calculator/calculatorResult.component';
 
+import { BugTrackerComponent } from './bugTracker/bugTracker.component';
 @NgModule({
   declarations: [
     AppComponent,
     HelloWorldComponent,
     CalculatorComponent,
-    CalculatorResultComponent
+    CalculatorResultComponent,
+    BugTrackerComponent
   ],
   imports: [
     BrowserModule,
