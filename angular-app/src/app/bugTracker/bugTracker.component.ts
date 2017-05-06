@@ -1,36 +1,43 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
 import { IBug } from './models/IBug';
-import { BugService } from './services/BugService';
+
+
+import { BugStorage } from './services/BugStorage.service';
 
 @Component({
 	selector : 'bug-tracker',
 	templateUrl : 'bugTracker.template.html',
 	styleUrls : ['bugTracker.style.css']
 })
-export class BugTrackerComponent{
-	newBugName : string = '';
+export class BugTrackerComponent implements OnInit{
 
+	newBugName : string = '';
 	bugs : Array<IBug> = [];
 
-	//bugService : BugService = new BugService();
-
-	constructor(public bugService : BugService){
-
+	constructor(public bugStorage : BugStorage){
+		
 	}
 	
+	ngOnInit(){
+		this.bugs = this.bugStorage.getAll();
+	}
+
 	onAddNewClick(){
-		let newBug : IBug = this.bugService.createNew(this.newBugName);
+		let newBug : IBug = this.bugStorage.createNew(this.newBugName);
 		this.bugs.push(newBug);
 	}
 
 	onBugNameClick(bug){
-		this.bugService.toggle(bug);
+		this.bugStorage.toggle(bug);
 	}
 
 	onRemoveClosedClick(){
 		for(let index = this.bugs.length-1; index >= 0; index--){
-			if (this.bugs[index].isClosed)
+			if (this.bugs[index].isClosed){
+				this.bugStorage.remove(this.bugs[index]);
 				this.bugs.splice(index,1);
+			}
 		}
 	}
 

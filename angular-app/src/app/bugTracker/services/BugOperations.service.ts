@@ -1,8 +1,9 @@
 import { IBug } from '../models/IBug';
 
-export class BugService{
-	createNew(bugName : string) : IBug {
+export class BugOperations{
+	createNew(id : number, bugName : string) : IBug {
 		var newBug : IBug = {
+			id : id,
 			name : bugName,
 			isClosed : false 
 		};

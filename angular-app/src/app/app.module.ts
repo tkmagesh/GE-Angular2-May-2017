@@ -10,7 +10,8 @@ import { CalculatorResultComponent} from './calculator/calculatorResult.componen
 
 
 import { BugTrackerComponent } from './bugTracker/bugTracker.component';
-import { BugService } from './bugTracker/services/BugService';
+import { BugOperations } from './bugTracker/services/BugOperations.service';
+import { BugStorage } from './bugTracker/services/BugStorage.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { BugService } from './bugTracker/services/BugService';
     FormsModule,
     HttpModule
   ],
-  providers: [BugService],
+  providers: [BugOperations, BugStorage],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
