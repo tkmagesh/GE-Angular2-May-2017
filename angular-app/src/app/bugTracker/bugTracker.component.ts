@@ -23,8 +23,8 @@ export class BugTrackerComponent implements OnInit{
 		this.bugs = this.bugStorage.getAll();
 	}
 
-	onAddNewClick(){
-		let newBug : IBug = this.bugStorage.createNew(this.newBugName);
+	onAddNewBug(newBugName){
+		let newBug : IBug = this.bugStorage.createNew(newBugName);
 		//this.bugs.push(newBug);
 		this.bugs = this.bugs.concat([newBug]);
 	}

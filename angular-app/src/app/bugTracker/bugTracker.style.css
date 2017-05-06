@@ -1,12 +1,13 @@
-.section{
+/deep/ .section{
 	margin-bottom: 10px;
 }
-.closed{
+
+/deep/ .closed{
 	color : red;
 	text-decoration: line-through;
 	font-style: italic;
 }
-.bugname, .stats{
+.bugname{
 	font-size: 22pt;
 }
 .bugname{
