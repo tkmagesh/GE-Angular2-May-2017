@@ -19,10 +19,12 @@ function getDescending(comparer) : IComparer{
 }
 
 @Pipe({
-	name : 'sort'
+	name : 'sort',
+	pure : true
 })
 export class SortPipe implements PipeTransform{
 	transform(data : Array<any>, attr : string = 'id', descending: boolean = false){
+		console.log('sort pipe processed');
 		let comparer = getComparer(attr);
 		if (descending){
 			comparer = getDescending(comparer);

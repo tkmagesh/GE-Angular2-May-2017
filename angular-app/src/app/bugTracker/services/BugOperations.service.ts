@@ -11,7 +11,12 @@ export class BugOperations{
 		return newBug;
 	}
 
-	toggle ( bug : IBug ) : void {
-		bug.isClosed = !bug.isClosed;
+	toggle ( bug : IBug ) : IBug {
+		return {
+			id : bug.id,
+			name : bug.name,
+			isClosed : !bug.isClosed,
+			createdAt : bug.createdAt
+		}
 	}
 }

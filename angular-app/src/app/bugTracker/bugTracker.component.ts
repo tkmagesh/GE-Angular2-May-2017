@@ -25,11 +25,15 @@ export class BugTrackerComponent implements OnInit{
 
 	onAddNewClick(){
 		let newBug : IBug = this.bugStorage.createNew(this.newBugName);
-		this.bugs.push(newBug);
+		//this.bugs.push(newBug);
+		this.bugs = this.bugs.concat([newBug]);
 	}
 
 	onBugNameClick(bug){
-		this.bugStorage.toggle(bug);
+		var toggledBug = this.bugStorage.toggle(bug);
+		this.bugs = this.bugs.map(function(existingBug){
+			return existingBug.id === toggledBug.id ? toggledBug : existingBug
+		});
 	}
 
 	onRemoveClosedClick(){
@@ -41,13 +45,4 @@ export class BugTrackerComponent implements OnInit{
 		}
 	}
 
-	getClosedCount(){
-		let result = 0;
-		for(let bug of this.bugs){
-			if (bug.isClosed){
-				++result;
-			}
-		}
-		return result;
-	}
 }
