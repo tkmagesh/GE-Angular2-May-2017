@@ -3,7 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { IBug } from './models/IBug';
 
 
-import { BugStorage } from './services/BugStorage.service';
+import { BugOperations } from './services/BugOperations.service';
+import { Http } from '@angular/http';
+import 'rxjs/Rx';
 
 @Component({
 	selector : 'bug-tracker',
@@ -15,34 +17,39 @@ export class BugTrackerComponent implements OnInit{
 	newBugName : string = '';
 	bugs : Array<IBug> = [];
 
-	constructor(public bugStorage : BugStorage){
+	constructor(public bugOperations : BugOperations, private http : Http){
 		
 	}
 	
 	ngOnInit(){
-		this.bugs = this.bugStorage.getAll();
+		this.http
+			.get('http://localhost:3000/bugs')
+			.map(response => response.json())
+			.subscribe(data => this.bugs = data);
 	}
 
 	onAddNewBug(newBugName){
-		let newBug : IBug = this.bugStorage.createNew(newBugName);
-		//this.bugs.push(newBug);
-		this.bugs = this.bugs.concat([newBug]);
+		
+		let newBugData = this.bugOperations.createNew(0, newBugName);
+		this.http
+			.post('http://localhost:3000/bugs', newBugData)
+			.map(response => response.json())
+			.subscribe(newBug => this.bugs = this.bugs.concat([newBug]));
+		
+
 	}
 
 	onBugNameClick(bug){
-		var toggledBug = this.bugStorage.toggle(bug);
-		this.bugs = this.bugs.map(function(existingBug){
-			return existingBug.id === toggledBug.id ? toggledBug : existingBug
-		});
+		var toggledBug = this.bugOperations.toggle(bug);
+		this.http
+			.put('http://localhost:3000/bugs/' + bug.id, toggledBug)
+			.map(response => response.json())
+			.subscribe(toggledBug => this.bugs = this.bugs.map(existingBug => existingBug.id === toggledBug.id ? toggledBug : existingBug));
+		
 	}
 
 	onRemoveClosedClick(){
-		for(let index = this.bugs.length-1; index >= 0; index--){
-			if (this.bugs[index].isClosed){
-				this.bugStorage.remove(this.bugs[index]);
-				this.bugs.splice(index,1);
-			}
-		}
+		let bugsToRemove = this.bugs.filter(bug => bug.isClosed);
 	}
 
 }
