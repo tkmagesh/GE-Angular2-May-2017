@@ -18,6 +18,8 @@ import { BugOperations } from './bugTracker/services/BugOperations.service';
 import { BugStorage } from './bugTracker/services/BugStorage.service';
 import { BugService } from './bugTracker/services/BugService.service';
 
+import { HighlightDirective } from './bugTracker/directives/myHighLight.directive';
+
 import { ClosedCountPipe } from './bugTracker/pipes/closedCount.pipe';
 
 
@@ -30,7 +32,8 @@ import { ClosedCountPipe } from './bugTracker/pipes/closedCount.pipe';
     BugTrackerComponent,
     ClosedCountPipe,
     BugStatsComponent,
-    BugEditComponent
+    BugEditComponent,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,
