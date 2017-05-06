@@ -6,6 +6,7 @@ import { IBug } from './models/IBug';
 import { BugOperations } from './services/BugOperations.service';
 import { Http } from '@angular/http';
 import 'rxjs/Rx';
+import { BugService } from './services/BugService.service';
 
 @Component({
 	selector : 'bug-tracker',
@@ -17,33 +18,31 @@ export class BugTrackerComponent implements OnInit{
 	newBugName : string = '';
 	bugs : Array<IBug> = [];
 
-	constructor(public bugOperations : BugOperations, private http : Http){
+	constructor(public bugOperations : BugOperations, private http : Http, private bugService : BugService){
 		
 	}
 	
 	ngOnInit(){
-		this.http
-			.get('http://localhost:3000/bugs')
-			.map(response => response.json())
+		this
+			.bugService
+			.getAll()
 			.subscribe(data => this.bugs = data);
 	}
 
 	onAddNewBug(newBugName){
 		
-		let newBugData = this.bugOperations.createNew(0, newBugName);
-		this.http
-			.post('http://localhost:3000/bugs', newBugData)
-			.map(response => response.json())
+		this
+			.bugService
+			.addNew(newBugName)
 			.subscribe(newBug => this.bugs = this.bugs.concat([newBug]));
 		
 
 	}
 
 	onBugNameClick(bug){
-		var toggledBug = this.bugOperations.toggle(bug);
-		this.http
-			.put('http://localhost:3000/bugs/' + bug.id, toggledBug)
-			.map(response => response.json())
+		this
+			.bugService
+			.toggle(bug)
 			.subscribe(toggledBug => this.bugs = this.bugs.map(existingBug => existingBug.id === toggledBug.id ? toggledBug : existingBug));
 		
 	}
