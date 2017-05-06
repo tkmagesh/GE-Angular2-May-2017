@@ -13,13 +13,20 @@ import { BugTrackerComponent } from './bugTracker/bugTracker.component';
 import { BugOperations } from './bugTracker/services/BugOperations.service';
 import { BugStorage } from './bugTracker/services/BugStorage.service';
 
+import { TrimTextPipe } from './bugTracker/pipes/trimText.pipe';
+import { ElapsedPipe } from './bugTracker/pipes/elapsed.pipe';
+import { SortPipe } from './bugTracker/pipes/sort.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
     HelloWorldComponent,
     CalculatorComponent,
     CalculatorResultComponent,
-    BugTrackerComponent
+    BugTrackerComponent,
+    TrimTextPipe,
+    ElapsedPipe,
+    SortPipe
   ],
   imports: [
     BrowserModule,
